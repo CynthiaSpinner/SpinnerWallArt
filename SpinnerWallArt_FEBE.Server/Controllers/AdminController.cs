@@ -8,27 +8,39 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using SpinnerWallArt_FEBE.Server.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Dapper;
+using System.Configuration;
 
 
 namespace SpinnerWallArt_FEBE.Server.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AdminController : Controller
     {
-        private readonly IAdmin admin;
-        Response response = new Response();
-        
-        public AdminController(IAdmin admin)
-        {
-            this.admin = admin;
-        }
+        //private readonly IDbConnection _conn;
+        //public AdminController(IDbConnection conn)
+        //{
+        //    _conn = conn;
+        //}
+        //private readonly AdminRepository admin;
+        //Response response = new Response();
+
+        //public AdminController(AdminRepository admin)
+        //{
+        //    this.admin = admin;
+        //}
 
         [HttpGet]
         [Route("GetAllUsers")]        
-        public IEnumerable<Users> GetAllUsers()
+        public Response GetAllUsers()
         {
-            MySqlConnection connection = new MySqlConnection("spinner");
-            
-            return admin.GetAllUsers();
+            Response response = new Response();
+            AdminRepository admin = new AdminRepository(); 
+            response = admin.GetAllUsers();
+            return response;
         }
     }
 }

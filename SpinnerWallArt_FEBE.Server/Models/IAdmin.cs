@@ -10,6 +10,6 @@ namespace SpinnerWallArt_FEBE.Server.Models
 {
     public interface IAdmin
     {
-        public IEnumerable<Users> GetAllUsers();
+        public string GetAllUsers();
     }
 }
