@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpinnerWallArt_FEBE.Server", "SpinnerWallArt_FEBE.Server\SpinnerWallArt_FEBE.Server.csproj", "{937B0030-46EF-4BD7-BDFD-4DE489F2675D}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "spinnerwallart_febe.client", "spinnerwallart_febe.client\spinnerwallart_febe.client.esproj", "{7273A42B-1C2D-4639-AA06-D6B56A201336}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{937B0030-46EF-4BD7-BDFD-4DE489F2675D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{937B0030-46EF-4BD7-BDFD-4DE489F2675D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{937B0030-46EF-4BD7-BDFD-4DE489F2675D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{937B0030-46EF-4BD7-BDFD-4DE489F2675D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7273A42B-1C2D-4639-AA06-D6B56A201336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7273A42B-1C2D-4639-AA06-D6B56A201336}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7273A42B-1C2D-4639-AA06-D6B56A201336}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7273A42B-1C2D-4639-AA06-D6B56A201336}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7273A42B-1C2D-4639-AA06-D6B56A201336}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7273A42B-1C2D-4639-AA06-D6B56A201336}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72973238-0215-4241-B59E-7AD10FBA25EF}
+	EndGlobalSection
+EndGlobal
