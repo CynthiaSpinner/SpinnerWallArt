@@ -42,5 +42,19 @@ namespace SpinnerWallArt_FEBE.Server.Controllers
             response = admin.GetAllUsers();
             return response;
         }
+
+
+        [HttpPost]
+        [Route("AddAndUpdateProd")]
+
+        public Response AddAndUpdateProd(Products products)
+        {
+
+
+            Response response = new Response();
+            AdminRepository admin = new AdminRepository();
+            response = admin.AddAndUpdateProd(products);
+            return response;
+        }
     }
 }

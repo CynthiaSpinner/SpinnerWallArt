@@ -8,7 +8,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
 {
     public class Products
     {
-        public int ProductID { get; set; }
+        //public int ProductID { get; set; }
         public string ProductName { get; set; }
         public decimal Price1 { get; set; }
         public decimal Price2 { get; set; }
@@ -20,6 +20,8 @@ namespace SpinnerWallArt_FEBE.Server.Models
         public int Quantity { get; set; }
         public string ImageUrl { get; set; }
         public int Available { get; set; }
+
+        //public string Type { get; set; }
 
     }
 }
