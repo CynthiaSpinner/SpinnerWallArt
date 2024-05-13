@@ -36,7 +36,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
                 user.Type = Convert.ToString(dataTable.Rows[0]["Type"]);
 
                 response.StatusCode = 200;
-                response.StatusMessage = "Already User, Validated";
+                response.StatusMessage = "Validated";
             }
             else
             {
