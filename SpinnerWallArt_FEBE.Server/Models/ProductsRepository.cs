@@ -78,5 +78,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
         //{
         //    return _conn.QuerySingle<Products>("SELECT * FROM spinnerprints.Products WHERE ProductID = @ProductID", new { productid = productId });
         //}
+
+        
     }
 }

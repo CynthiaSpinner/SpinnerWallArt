@@ -24,5 +24,37 @@ namespace SpinnerWallArt_FEBE.Server.Controllers
             response = prodRepo.GetAllProducts(products);
             return response;
         }
+
+        [HttpPost]
+        [Route("AddToCart")]
+
+        public Response AddToCart(Cart cart)
+        {
+            CartRepository cartRepo = new CartRepository();
+            Response response = new Response();
+            response = cartRepo.AddToCart(cart);
+            return response;
+        }
+
+        [HttpPost]
+        [Route("PlaceOrder")]
+
+        public Response PlaceOrder(Users users)
+        {
+            CartRepository cartRepo = new CartRepository();
+            Response response = new Response();
+            response = cartRepo.PlaceOrder(users);
+            return response;
+        }
+
+        [HttpPost]
+        [Route("OrderList")]
+        public Response OrderList(Users users)
+        {
+            OrdersRepository ordersRepo = new OrdersRepository();
+            Response response = new Response();
+            response = ordersRepo.OrderList(users);
+            return response;
+        }
     }
 }
