@@ -19,7 +19,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
             //var users = conn.Query(sql);
             adapter.SelectCommand = new MySqlCommand(sql, conn);
             adapter.SelectCommand.Parameters.AddWithValue("@Type", users.Type);
-            adapter.SelectCommand.Parameters.AddWithValue("@ID", users.ID);
+            adapter.SelectCommand.Parameters.AddWithValue("@ID", users.ID); //Work out getting orders to user id 
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);
 

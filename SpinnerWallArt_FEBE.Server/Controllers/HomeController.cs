@@ -56,11 +56,25 @@ namespace SpinnerWallArt_FEBE.Server.Controllers
             return response;
         }
 
-        //public IActionResult UserView(Users users)
+        //[HttpPost]
+        //[Route("UserView")]
+        //public Response UserView(Users users)
         //{
-        //    return View(users);
+        //    UsersRepository usersrepo = new UsersRepository();
+        //    Response response = new Response();
+        //    response = usersrepo.UserView(users);
+        //    return response;
         //}
 
+        //[HttpPost]
+        //[Route("ProfileUpdate")]
+        //public Response ProfileUpdate(Users users)
+        //{
+        //    UsersRepository usersrepo = new UsersRepository();
+        //    Response response = new Response();
+        //    response = usersrepo.ProfileUpdate(users);
+        //    return response;
+        //}
         //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         //public IActionResult Error()
         //{

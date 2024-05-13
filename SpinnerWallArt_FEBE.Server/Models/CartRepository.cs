@@ -14,7 +14,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
             cmd.Parameters.AddWithValue("@CartId", cart.CartID);
             cmd.Parameters.AddWithValue("@Price", cart.Price);
             cmd.Parameters.AddWithValue("@Discount", cart.Discount);
-            cmd.Parameters.AddWithValue("@Quantity", cart.Quantity);
+            cmd.Parameters.AddWithValue("@Quantity", cart.Quantity); //get ID for users
             cmd.Parameters.AddWithValue("@TotalPrice", cart.TotalPrice);
             cmd.Parameters.AddWithValue("@ProductID", cart.ProductID);
             cmd.Parameters.AddWithValue("@Size", cart.Size);

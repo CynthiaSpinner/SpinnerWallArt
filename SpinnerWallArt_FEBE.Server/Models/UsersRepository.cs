@@ -47,11 +47,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
             return response;
         }
 
-        public Response ProfileUpdate(Users users, MySqlConnection conn)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public Response Register(Users users)
         {
             var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
@@ -87,9 +83,65 @@ namespace SpinnerWallArt_FEBE.Server.Models
             return response;
         }
 
-        public Response UserView(Users users, MySqlConnection conn)
+        public Response UserView(Users users)
         {
-            throw new NotImplementedException();
+            var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
+            MySqlDataAdapter adapter = new MySqlDataAdapter("c_userView", conn);
+            adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adapter.SelectCommand.Parameters.AddWithValue("@ID", users.ID);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            Response response = new Response();
+            Users user = new Users();
+            if (dataTable.Rows.Count > 0)
+            {
+                user.ID = Convert.ToInt32(dataTable.Rows[0]["ID"]);
+                user.FirstName = Convert.ToString(dataTable.Rows[0]["FirstName"]);
+                user.LastName = Convert.ToString(dataTable.Rows[0]["LastName"]);
+                user.Email = Convert.ToString(dataTable.Rows[0]["Email"]);
+                user.Type = Convert.ToString(dataTable.Rows[0]["Type"]);
+                user.TotalAmount = Convert.ToDecimal(dataTable.Rows[0]["TotalAmount"]);
+                user.Created = Convert.ToDateTime(dataTable.Rows[0]["Created"]);
+                user.Password = Convert.ToString(dataTable.Rows[0]["Password"]);
+
+                response.StatusCode = 200;
+                response.StatusMessage = "Existing user";
+                response.User = user;
+            }
+            else
+            {
+                response.StatusCode = 100;
+                response.StatusMessage = "User does NOT exist";
+                response.User = user;
+            }
+            return response;
+        }
+
+        public Response ProfileUpdate(Users users)
+        {
+            var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
+            Response response = new Response();
+            MySqlCommand cmd = new MySqlCommand("spi_profileUpdate");
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@FirstName", users.FirstName);
+            cmd.Parameters.AddWithValue("@FirstName", users.LastName);
+            cmd.Parameters.AddWithValue("@FirstName", users.Password);
+            cmd.Parameters.AddWithValue("@FirstName", users.Email);
+            conn.Open();
+            int i = cmd.ExecuteNonQuery();
+            conn.Close();
+            if (i > 0)
+            {
+                response.StatusCode = 200;
+                response.StatusMessage = "Profile updated successfuly";
+            }
+            else
+            {
+                response.StatusCode = 100;
+                response.StatusMessage = "Error occured, try again later";
+            }
+
+            return response;
         }
     }
 }
