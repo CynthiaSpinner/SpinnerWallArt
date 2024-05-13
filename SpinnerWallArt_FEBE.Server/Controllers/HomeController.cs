@@ -11,53 +11,60 @@ using Dapper;
 
 namespace SpinnerWallArt_FEBE.Server.Controllers
 {
-    //[Route("api/[controller]")]
-    //[ApiController]
+    [Route("api/[controller]")]
+    [ApiController]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
 
-        Response response = new Response();
+        //Response response = new Response();
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
         
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        //[HttpPost]
-        //[Route("Register")]
-        //public IActionResult Register(Users users)
+        //public IActionResult Privacy()
         //{
-        //    MySqlConnection connection = new MySqlConnection(GetConnectionString("spinner").ToString());
-        //    response = UsersRepository.Register(users, connection);
         //    return View();
         //}
 
-        private object GetConnectionString(string v)
+        [HttpPost]
+        [Route("Register")]
+        public Response Register(Users users)
         {
-            throw new NotImplementedException();
+            UsersRepository usersrepo = new UsersRepository();
+            Response response = new Response();
+            response = usersrepo.Register(users);
+            return response;
         }
 
-        public IActionResult Login(string email, string password)
+        //private object GetConnectionString(string v)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+
+        [HttpPost]
+        [Route("Login")]
+        public Response Login(Users users)
         {
-            return View();
+            UsersRepository usersrepo = new UsersRepository();
+            Response response = new Response();
+            response = usersrepo.Login(users);
+            return response;
         }
 
-        public IActionResult UserView(Users users)
-        {
-            return View(users);
-        }
+        //public IActionResult UserView(Users users)
+        //{
+        //    return View(users);
+        //}
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
     }
 }

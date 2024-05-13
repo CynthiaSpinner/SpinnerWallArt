@@ -3,7 +3,7 @@ using System.Data;
 using System.Collections.Generic;
 using Dapper;
 using MySql.Data.MySqlClient;
-using SpinnerWallArt_FEBE.Server.Controllers;
+
 
 namespace SpinnerWallArt_FEBE.Server.Models
 {
@@ -108,12 +108,37 @@ namespace SpinnerWallArt_FEBE.Server.Models
             }
             else
             {
-                response.StatusCode = 200;
+                response.StatusCode = 100;
                 response.StatusMessage = "Product NOT saved! Try again";
             }
 
             return response;
         }
+        public Response DeleteProduct(Products products)
+        {
+            var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
+            Response response = new Response();
+           
+            //Delete
+
+            conn.Open();
+            int i = conn.Execute("DELETE FROM spinnerprints.products WHERE ProductName = @ProductName;", new { productName = products.ProductName });
+            conn.Close();
+
+            if (i > 0)
+            {
+                response.StatusCode = 200;
+                response.StatusMessage = "Product deleted successfully";
+            }
+            else
+            {
+                response.StatusCode = 100;
+                response.StatusMessage = "Product NOT deleted! Try again";
+            }
+
+            return response;
+        }
+        
 
     }
 }

@@ -11,7 +11,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
 {
     public class Users
     {
-        public int ID { get; set; }
+        public int ID { get; set; } = 0;
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
