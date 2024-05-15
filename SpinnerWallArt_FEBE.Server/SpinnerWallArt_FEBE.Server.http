@@ -1,6 +1,0 @@
-@SpinnerWallArt_FEBE.Server_HostAddress = http://localhost:5185
-
-GET {{SpinnerWallArt_FEBE.Server_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

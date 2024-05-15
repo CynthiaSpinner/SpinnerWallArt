@@ -29,11 +29,14 @@ namespace SpinnerWallArt_FEBE.Server
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddCors();
 
             var app = builder.Build();
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000"));
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -41,14 +44,14 @@ namespace SpinnerWallArt_FEBE.Server
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            if(!app.Environment.IsDevelopment())
-            {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
-            }
+            //if(!app.Environment.IsDevelopment())
+            //{
+            //    app.UseExceptionHandler("/Home/Error");
+            //    app.UseHsts();
+            //}
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
 
             app.UseRouting();
 

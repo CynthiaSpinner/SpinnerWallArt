@@ -1,52 +1,70 @@
+
 import React from 'react';
+import '../StyleSheets/Login.css';
 
 export default function Login() {
+    const login = (() => {
+        fetch('https://localhost:7090/api/Home/Login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ Password: 'Yareyou2', Email: 'CynthiaSpinner@gmail.com', })
+        })
+            .then(response => response.json()).then((data) => {
+                console.log(data)
+            })
+    })
+  
     return (
-        <div><section class="vh-100 gradient-custom">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div class="card bg-dark text-white">
-                            <div class="card-body p-5 text-center">
+        <section className="vh-100">
+            <div className="container py-5 h-100">
+                <div className="row d-flex justify-content-center align-items-center h-100">
+                    <div className="col col-xl-10">
+                        <div className="card">
+                            <div className="row g-0">
+                                {/*<div className="col-md-6 col-lg-5 d-none d-md-block">*/}
+                                {/*    */}{/*<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"*/}
+                                {/*    */}{/*    alt="login form" className="img-fluid"/>*/}
+                                {/*</div>*/}
+                                <div className="col-md-6 col-lg-7 d-flex align-items-center">
+                                    <div className="card-body p-4 p-lg-5 text-black">
 
-                                <div class="mb-md-5 mt-md-4 pb-5">
+                                        <form>
 
-                                    <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                                    <p class="text-white-50 mb-5">Please enter your login and password!</p>
+                                            <div className="d-flex align-items-center mb-3 pb-1">
+                                                <i className="fas fa-cubes fa-2x me-3"></i>
+                                                <span className="h1 fw-bold mb-0">Logo</span>
+                                            </div>
 
-                                    <div data-mdb-input-init class="form-outline form-white mb-4">
-                                        <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-                                        <label class="form-label" for="typeEmailX">Email</label>
+                                            <h5 className="fw-normal mb-3 pb-3">Sign into your account</h5>
+
+                                            <div data-mdb-input-init className="form-outline mb-4">
+                                                <input type="email" id="form2Example17" className="form-control form-control-lg" />
+                                                <label className="form-label" htmlFor="form2Example17">Email address</label>
+                                            </div>
+
+                                            <div data-mdb-input-init className="form-outline mb-4">
+                                                <input type="password" id="form2Example27" className="form-control form-control-lg" />
+                                                <label className="form-label" htmlFor="form2Example27">Password</label>
+                                            </div>
+
+                                            <div className="pt-1 mb-4">
+                                                <button data-mdb-button-init data-mdb-ripple-init className="btn btn-dark btn-lg btn-block" onClick={login} type="button">Login</button>
+                                            </div>
+
+                                            <a className="small text-muted" href="#!">Forgot password?</a>
+                                            <p className="mb-5 pb-lg-2">Don't have an account? <a href="#!">Register here</a></p>
+                                            <a href="#!" className="small text-muted">Terms of use.</a>
+                                            <a href="#!" className="small text-muted">Privacy policy</a>
+                                        </form>
+
                                     </div>
-
-                                    <div data-mdb-input-init class="form-outline form-white mb-4">
-                                        <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                                        <label class="form-label" for="typePasswordX">Password</label>
-                                    </div>
-
-                                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-
-                                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
-
-                                    <div class="d-flex justify-content-center text-center mt-4 pt-1">
-                                        <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
-                                        <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
-                                        <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
-                                    </div>
-
                                 </div>
-
-                                <div>
-                                    <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
-                                    </p>
-                                </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section></div>
+        </section>
 
     )
 }

@@ -1,0 +1,19 @@
+.vh-100 {
+    background-color: #9A616D;
+
+}
+.card {
+    border-radius: 1rem;
+}
+.img-fluid {
+    border-radius: 1rem 0 0 1rem;
+}
+.fas {
+    color: #ff6219;
+}
+.fw-normal {
+    letter-spacing: 1px;
+}
+.mb-5 {
+    color: #393f81;
+}
