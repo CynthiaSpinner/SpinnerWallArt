@@ -2,17 +2,17 @@ import React from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Login from './Login';
 import Registration from './Registration';
+
 import DashBoard from './Users/DashBoard';
 import Orders from './Users/Orders';
 import Profile from './Users/Profile';
 import ProductDisplay from './Users/ProductDisplay';
-import Header from './Users/Header';
+import Cart from './Users/Cart';
 
 import AdminDashBoard from './Admin/AdminDashBoard';
-import AdminHeader from './Admin/AdminHeader';
-import AdminOrder from './Admin/AdminOrders';
+import AdminOrders from './Admin/AdminOrders';
 import UserDetails from './Admin/UserDetails';
-
+import AdminProducts from './Admin/AdminProducts';
 
 
 export default function RouterPage() {
