@@ -18,7 +18,7 @@ namespace SpinnerWallArt_FEBE.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminController : Controller
+    public class AdminController(IAdmin AdminRepository) : ControllerBase
     {
         //private readonly IDbConnection _conn;
         //public AdminController(IDbConnection conn)
@@ -38,8 +38,8 @@ namespace SpinnerWallArt_FEBE.Server.Controllers
         public Response GetAllUsers()
         {
             Response response = new Response();
-            AdminRepository admin = new AdminRepository(); 
-            response = admin.GetAllUsers();
+            //AdminRepository admin = new AdminRepository(); 
+            response = AdminRepository.GetAllUsers();
             return response;
         }
 
