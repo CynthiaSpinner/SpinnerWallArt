@@ -44,28 +44,28 @@ namespace SpinnerWallArt_FEBE.Server.Controllers
         }
 
 
-        [HttpPost]
-        [Route("AddAndUpdateProd")]
+        //[HttpPost]
+        //[Route("AddAndUpdateProd")]
 
-        public Response AddAndUpdateProd(Products products)
-        {
+        //public Response AddAndUpdateProd(Products products)
+        //{
 
 
-            Response response = new Response();
-            AdminRepository admin = new AdminRepository();
-            response = admin.AddAndUpdateProd(products);
-            return response;
-        }
+        //    Response response = new Response();
+        //    //AdminRepository admin = new AdminRepository();
+        //    response = AdminRepository.AddAndUpdateProd();
+        //    return response;
+        //}
 
-        [HttpPost]
-        [Route("DeleteProduct")]
+        //[HttpPost]
+        //[Route("DeleteProduct")]
 
-        public Response DeleteProduct(Products products) 
-        {
-            Response response = new Response();
-            AdminRepository admin = new AdminRepository();
-            response = admin.DeleteProduct(products);
-            return response;
-        }
+        //public Response DeleteProduct(Products products) 
+        //{
+        //    Response response = new Response();
+        //    //AdminRepository admin = new AdminRepository();
+        //    response = AdminRepository.DeleteProduct(products);
+        //    return response;
+        //}
     }
 }

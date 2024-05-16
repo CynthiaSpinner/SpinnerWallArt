@@ -23,6 +23,7 @@ namespace SpinnerWallArt_FEBE.Server
                 return conn;
             });
 
+            builder.Services.AddSingleton<IAdmin, AdminRepository>();
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             
@@ -69,7 +70,7 @@ namespace SpinnerWallArt_FEBE.Server
 
             app.Run();
 
-            builder.Services.AddSingleton<IAdmin, AdminRepository>();
+            
         }
     }
 }

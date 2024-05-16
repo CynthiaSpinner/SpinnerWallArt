@@ -9,24 +9,24 @@ namespace SpinnerWallArt_FEBE.Server.Models
 {
     public class AdminRepository : IAdmin
     {
-        //private readonly IDbConnection _conn;
-        //public AdminRepository(IDbConnection conn)
-        //{
-        //    _conn = conn;
-        //}
+        private readonly MySqlConnection _conn;
+        public AdminRepository(MySqlConnection conn)
+        {
+            _conn = conn;
+        }
 
         
         
         
         public Response GetAllUsers()
         {
-            var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
+            //var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
             List<Users> UsersList = new List<Users>();
             Response response = new Response();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
             var sql = "SELECT * FROM spinnerprints.users;";
             //var users = conn.Query(sql);
-            adapter.SelectCommand = new MySqlCommand(sql, conn);
+            adapter.SelectCommand = new MySqlCommand(sql, _conn);
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);
 
