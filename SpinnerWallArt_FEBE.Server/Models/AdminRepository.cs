@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace SpinnerWallArt_FEBE.Server.Models
 {
-    public class AdminRepository 
+    public class AdminRepository : IAdmin
     {
         //private readonly IDbConnection _conn;
         //public AdminRepository(IDbConnection conn)
@@ -138,7 +138,10 @@ namespace SpinnerWallArt_FEBE.Server.Models
 
             return response;
         }
-        
 
+        string IAdmin.GetAllUsers()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

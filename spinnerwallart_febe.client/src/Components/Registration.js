@@ -7,7 +7,7 @@ export default function Registration() {
         const email = document.getElementById('email').value;
         const firstname = document.getElementById('firstname').value;
         const lastname = document.getElementById('lastname').value;
-        console.log(lastname)
+        
         fetch('https://localhost:7090/api/Home/Register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

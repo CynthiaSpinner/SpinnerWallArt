@@ -4,10 +4,13 @@ import '../StyleSheets/Login.css';
 
 export default function Login() {
     const login = (() => {
+        const password = document.getElementById('password').value;
+        const email = document.getElementById('email').value;
+
         fetch('https://localhost:7090/api/Home/Login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ Password: 'Yareyou2', Email: 'CynthiaSpinner@gmail.com', })
+            body: JSON.stringify({ Password: password, Email: email, })
         })
             .then(response => response.json()).then((data) => {
                 console.log(data)
@@ -38,12 +41,12 @@ export default function Login() {
                                             <h5 className="fw-normal mb-3 pb-3">Sign into your account</h5>
 
                                             <div data-mdb-input-init className="form-outline mb-4">
-                                                <input type="email" id="form2Example17" className="form-control form-control-lg" />
+                                                <input type="email" id="email" className="form-control form-control-lg" />
                                                 <label className="form-label" htmlFor="form2Example17">Email address</label>
                                             </div>
 
                                             <div data-mdb-input-init className="form-outline mb-4">
-                                                <input type="password" id="form2Example27" className="form-control form-control-lg" />
+                                                <input type="password" id="password" className="form-control form-control-lg" />
                                                 <label className="form-label" htmlFor="form2Example27">Password</label>
                                             </div>
 

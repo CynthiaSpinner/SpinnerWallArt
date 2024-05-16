@@ -6,6 +6,7 @@ using System.Data;
 using System;
 using SpinnerWallArt_FEBE.Server.Models;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace SpinnerWallArt_FEBE.Server
 {
@@ -15,14 +16,16 @@ namespace SpinnerWallArt_FEBE.Server
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<IDbConnection>((s) =>
             {
                 IDbConnection conn = new MySqlConnection(builder.Configuration.GetConnectionString("spinner"));
                 conn.Open();
                 return conn;
             });
+
+            // Add services to the container.
+            builder.Services.AddControllersWithViews();
+            
 
 
             builder.Services.AddControllers();
@@ -65,6 +68,8 @@ namespace SpinnerWallArt_FEBE.Server
             app.MapFallbackToFile("/index.html");
 
             app.Run();
+
+            builder.Services.AddSingleton<IAdmin, AdminRepository>();
         }
     }
 }
