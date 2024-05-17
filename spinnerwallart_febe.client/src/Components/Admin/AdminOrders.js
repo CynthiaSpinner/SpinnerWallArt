@@ -7,7 +7,7 @@ export default function AdminOrders() {
             <div>   {/*<Link to='/admindashboard' ></Link>*/}
                <AdminHeader></AdminHeader>
             </div> 
-            <table class="table table-striped table-dark">
+            <table className="table table-striped table-dark">
                 <thead>
                     <tr>
                         <th scope="col">#</th>

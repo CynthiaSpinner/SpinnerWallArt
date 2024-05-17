@@ -20,7 +20,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
         
         public Response GetAllUsers()
         {
-            //var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
+            
             List<Users> UsersList = new List<Users>();
             Response response = new Response();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
@@ -46,7 +46,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
                     user.Password = Convert.ToString(dataTable.Rows[i]["Password"]);
                     user.TotalAmount = Convert.ToDecimal(dataTable.Rows[i]["TotalAmount"]);
                     user.Status = Convert.ToInt32(dataTable.Rows[i]["Status"]);
-                    //user.Created = Convert.ToDateTime(dataTable.Rows[i]["Created"]);
+                    
                     UsersList.Add(user);
                 }
                 if (UsersList.Count > 0)
@@ -75,13 +75,9 @@ namespace SpinnerWallArt_FEBE.Server.Models
         public Response AddAndUpdateProd(Products products)
         {
 
-            var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
+            
             Response response = new Response();
-            //var sql = "INSERT INTO spinnerprints.products "; //(ProductName, Price1, Price2, Price3, Size1, Size2, Size3, Quantity, Discount, Available, ImageUrl" +
-            // "VALUES (@ProductName, @Price1, @Price2, @Price3, @Size1, @Size2, @Size3, @Quantity, @Discount, @Available, @ImageUrl);";
-            //var users = conn.Query(sql);
-            //MySqlCommand cmd = new MySqlCommand(sql, conn);
-            MySqlCommand cmd = new MySqlCommand("Spi_AddAndUpdateProd", conn);
+            MySqlCommand cmd = new MySqlCommand("Spi_AddAndUpdateProd", _conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@ProductName", products.ProductName);
@@ -95,11 +91,11 @@ namespace SpinnerWallArt_FEBE.Server.Models
             cmd.Parameters.AddWithValue("@Discount", products.Discount);
             cmd.Parameters.AddWithValue("@Available", products.Available);
             cmd.Parameters.AddWithValue("@ImageUrl", products.ImageUrl);
-            //cmd.Parameters.AddWithValue("@Type", products.Type); // managing both Create and Update procedures in on operation
+            
 
-            conn.Open();
+            _conn.Open();
             int i = cmd.ExecuteNonQuery();
-            conn.Close();
+            _conn.Close();
 
             if (i > 0)
             {
@@ -116,14 +112,14 @@ namespace SpinnerWallArt_FEBE.Server.Models
         }
         public Response DeleteProduct(Products products)
         {
-            var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
+            
             Response response = new Response();
            
-            //Delete
+            
 
-            conn.Open();
-            int i = conn.Execute("DELETE FROM spinnerprints.products WHERE ProductName = @ProductName;", new { productName = products.ProductName });
-            conn.Close();
+            _conn.Open();
+            int i = _conn.Execute("DELETE FROM spinnerprints.products WHERE @ProductName = ProductName;", new { productName = products.ProductName });
+            _conn.Close();
 
             if (i > 0)
             {
@@ -139,9 +135,5 @@ namespace SpinnerWallArt_FEBE.Server.Models
             return response;
         }
 
-        string IAdmin.GetAllUsers()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

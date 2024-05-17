@@ -16,12 +16,11 @@ namespace SpinnerWallArt_FEBE.Server
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddScoped<IDbConnection>((s) =>
-            {
-                IDbConnection conn = new MySqlConnection(builder.Configuration.GetConnectionString("spinner"));
-                conn.Open();
-                return conn;
-            });
+            builder.Services.AddTransient<MySqlConnection>(_ =>
+            
+                new MySqlConnection(builder.Configuration.GetConnectionString("spinner")));
+               
+            
 
             builder.Services.AddSingleton<IAdmin, AdminRepository>();
             // Add services to the container.
@@ -48,12 +47,7 @@ namespace SpinnerWallArt_FEBE.Server
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            //if(!app.Environment.IsDevelopment())
-            //{
-            //    app.UseExceptionHandler("/Home/Error");
-            //    app.UseHsts();
-            //}
-
+            
             app.UseHttpsRedirection();
             //app.UseStaticFiles();
 

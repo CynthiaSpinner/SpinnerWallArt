@@ -15,10 +15,10 @@ namespace SpinnerWallArt_FEBE.Server.Models
             Response response = new Response();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
 
-            var sql = "SELECT * FROM spinnerprints.products Where @Type=Type and @ID=ID;";
+            var sql = "SELECT * FROM spinnerprints.orders Where @ID=ID;";
             //var users = conn.Query(sql);
             adapter.SelectCommand = new MySqlCommand(sql, conn);
-            adapter.SelectCommand.Parameters.AddWithValue("@Type", users.Type);
+            //adapter.SelectCommand.Parameters.AddWithValue("@Type", users.Type);
             adapter.SelectCommand.Parameters.AddWithValue("@ID", users.ID); //Work out getting orders to user id 
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);

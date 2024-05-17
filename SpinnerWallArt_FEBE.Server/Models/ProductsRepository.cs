@@ -39,15 +39,15 @@ namespace SpinnerWallArt_FEBE.Server.Models
                     Products product = new Products();
                     product.ProductID = Convert.ToInt32(dataTable.Rows[i]["ProductId"]);
                     product.ProductName = Convert.ToString(dataTable.Rows[i]["ProductName"]);
-                    product.Price1 = Convert.ToInt32(dataTable.Rows[i]["Price1"]);
-                    product.Price2 = Convert.ToInt32(dataTable.Rows[i]["Price2"]);
-                    product.Price3 = Convert.ToInt32(dataTable.Rows[i]["Price3"]);
+                    product.Price1 = Convert.ToDecimal(dataTable.Rows[i]["Price1"]);
+                    product.Price2 = Convert.ToDecimal(dataTable.Rows[i]["Price2"]);
+                    product.Price3 = Convert.ToDecimal(dataTable.Rows[i]["Price3"]);
                     product.Size1 = Convert.ToString(dataTable.Rows[i]["Size1"]);
                     product.Size2 = Convert.ToString(dataTable.Rows[i]["Size2"]);
                     product.Size3 = Convert.ToString(dataTable.Rows[i]["Size3"]);
                     product.Quantity = Convert.ToInt32(dataTable.Rows[i]["Quantity"]);
                     product.Available = Convert.ToInt32(dataTable.Rows[i]["Available"]);//change to string here and sql
-                    product.Discount = Convert.ToInt32(dataTable.Rows[i]["Discount"]);
+                    product.Discount = Convert.ToDecimal(dataTable.Rows[i]["Discount"]);
                     product.ImageUrl = Convert.ToString(dataTable.Rows[i]["ImageUrl"]);
                     //user.Created = Convert.ToDateTime(dataTable.Rows[i]["Created"]);
                     ListProducts.Add(product);
@@ -55,20 +55,20 @@ namespace SpinnerWallArt_FEBE.Server.Models
                 if (ListProducts.Count > 0)
                 {
                     response.StatusCode = 200;
-                    response.StatusMessage = "Users details found";
+                    response.StatusMessage = "products details found";
                     response.ListProducts = ListProducts;
                 }
                 else
                 {
                     response.StatusCode = 100;
-                    response.StatusMessage = "Users details NOT found";
+                    response.StatusMessage = "products details NOT found";
                     response.ListProducts = ListProducts;
                 }
             }
             else
             {
                 response.StatusCode = 100;
-                response.StatusMessage = "Users details NOT found";
+                response.StatusMessage = "products details NOT found";
                 response.ListProducts = ListProducts;
             }
             return response;

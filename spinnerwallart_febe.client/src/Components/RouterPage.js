@@ -28,7 +28,7 @@ export default function RouterPage() {
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/products' element={<ProductDisplay />} />
                
-                <Route path='/admindashboard' element={<AdminDashBoard />} />               
+                <Route path='/' element={<AdminDashBoard />} />               
                 <Route path='/adminorders' element={<AdminOrders />} />
                 <Route path='/myproducts' element={<AdminProducts />} />
                 <Route path='/customers' element={<UserDetails />} />

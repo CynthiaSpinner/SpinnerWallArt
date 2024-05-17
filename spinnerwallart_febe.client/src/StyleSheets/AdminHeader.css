@@ -1,4 +1,41 @@
-.navbar-brand {
-    margin-top: -1px;
+.logo-title {
+    font-size: 25px;
+    text-align: left;
+    height: 40px;
+    padding-left: 32px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    background: rgb(249,230,206);
+    border-bottom: 1px solid black;
 }
 
+.navbar {
+    background: rgb(249,230,206);
+    padding-left: 0px;
+}
+.container2 {
+    margin-left: 40px;
+}
+
+.container {
+    margin-left:0px;
+    font-size: large;
+    height: 50px;
+    padding-top: 10px;
+    padding-left: 32px;
+    width: 100%;
+}
+.table {
+    margin-bottom: 0;
+}
+.navbar-size {
+   
+    height: 45px;
+}
+a {
+    color: black;
+    text-decoration:none;
+    text-align: center;
+    padding-right: 25px;
+    padding-left: 0;
+}

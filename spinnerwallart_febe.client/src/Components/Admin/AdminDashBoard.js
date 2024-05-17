@@ -5,9 +5,10 @@ import AdminHeader from "./AdminHeader"
 export default function AdminDashBoard() {
     return (
         
-         <div>   {/*<Link to='/admindashboard' ></Link>*/}
+        <header> 
+        
             <AdminHeader></AdminHeader>
-         </div> 
+         </header> 
        
     )
 }
