@@ -38,20 +38,20 @@ namespace SpinnerWallArt_FEBE.Server.Models
                 {
                     response.StatusCode = 200;
                     response.StatusMessage = "Order details found";
-                    response.OrdersList = OrdersList;
+                    response.ListOrders = OrdersList;
                 }
                 else
                 {
                     response.StatusCode = 100;
                     response.StatusMessage = "Order details NOT found";
-                    response.OrdersList = OrdersList;
+                    response.ListOrders = OrdersList;
                 }
             }
             else
             {
                 response.StatusCode = 100;
                 response.StatusMessage = "Order details NOT found";
-                response.OrdersList = OrdersList;
+                response.ListOrders = OrdersList;
             }
             return response;
         }

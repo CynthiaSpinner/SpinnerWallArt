@@ -4,28 +4,39 @@ import '../../StyleSheets/AdminHeader.css';
 
 export default function AdminHeader() {
     return (
-        <header>
-            <div className="logo-title">
-            SpinnerWallArt
-            </div>
-            <nav className="navbar">
-                <div className="container">
-                    
-                    {/*<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">*/}
-                    {/*    <span className="navbar-toggler-icon"></span>*/}
-                    {/*</button>*/}
-                    <div className="link-container">
-                        <div className="navbar-size">
-                            <Link to='/AdminDashboard' >Admin Dashboard</Link>
-                            <Link to='/adminorders' >Orders</Link>
-                            <Link to='/myproducts' >Products</Link>
-                            <Link to='/customers' >Customer Details</Link>
-                            
-                            
-                        </div>
-                    </div>
+        <header className="admin-header">
+            <div className="admin-logo-container">
+                <div className="admin-logo-title">
+                    SpinnerWallArt
                 </div>
-            </nav>
-        </header>   
+            </div>
+            <div>
+                <nav className="admin-nav">
+                    <div className="admin-nav-container" id="navbarSupportedContent">
+
+                        <ul className="admin-nav-ul">
+                            <li className="admin-nav-item">
+                                <Link className="admin-nav-item" to='/' >Admin Dashboard</Link>
+                            </li>
+
+                            <li className="admin-nav-item">
+                                <Link className="admin-nav-item" to='/adminorders' >Orders</Link>
+                            </li>
+
+                            <li className="admin-nav-item">
+                                <Link className="admin-nav-item" to='/myproducts' >Products</Link>
+                            </li>
+
+                            <li className="admin-nav-item">
+                                <Link className="admin-nav-item" to='/customers' >Customer Details</Link>
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+                </nav>
+            </div>
+        </header>
     )
 }

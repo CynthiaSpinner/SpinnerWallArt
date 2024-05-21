@@ -1,41 +1,58 @@
-.logo-title {
-    font-size: 25px;
-    text-align: left;
-    height: 40px;
-    padding-left: 32px;
-    padding-top: 10px;
-    padding-bottom: 50px;
-    background: rgb(249,230,206);
-    border-bottom: 1px solid black;
-}
-
-.navbar {
-    background: rgb(249,230,206);
-    padding-left: 0px;
-}
-.container2 {
-    margin-left: 40px;
-}
-
-.container {
-    margin-left:0px;
-    font-size: large;
-    height: 50px;
-    padding-top: 10px;
-    padding-left: 32px;
+.admin-header {
+    border-bottom: 1px solid rgb(173,203,227 );
+    background: rgba(0, 0, 0, .6);
+    display: block;
+    position: fixed;
+    margin-bottom: 400px;
+    padding-right: 0;
     width: 100%;
 }
-.table {
-    margin-bottom: 0;
+
+.admin-logo-container {
+    display: block;
+    height: 80px;
+    width: 100%;
+    padding-bottom: 40px;
 }
-.navbar-size {
-   
-    height: 45px;
-}
-a {
-    color: black;
-    text-decoration:none;
+
+.admin-logo-title {
+    color: rgb(173,203,227 );
+    font-family: 'Vladimir Script';
+    position: center;
+    font-weight: 100;
+    font-size: 110px;
+    margin-top: 40px;
+    padding-right: 60px;
     text-align: center;
-    padding-right: 25px;
-    padding-left: 0;
+    height: 75px;
+}
+
+.admin-nav-container {
+    display: block;
+    height: 80px;
+    padding: 0;
+    text-align: center;
+    padding-top: 10px;
+    margin-top: 0;
+}
+
+.admin-nav-ul {
+    display: inline-block;
+    position: center;
+    margin-top: 0;
+    padding-left: 180px;
+}
+
+.admin-nav-item {
+    display: inline;
+    color: rgb(173,203,227 );
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 100;
+    display: inline;
+    text-align: center;
+    padding-left: 20px;
+
 }

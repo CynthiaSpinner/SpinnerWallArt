@@ -10,14 +10,18 @@ namespace SpinnerWallArt_FEBE.Server.Models
     public class AdminRepository : IAdmin
     {
         private readonly MySqlConnection _conn;
-        public AdminRepository(MySqlConnection conn)
+
+        private readonly IWebHostEnvironment _eve;
+        public AdminRepository(MySqlConnection conn, IWebHostEnvironment eve)
         {
             _conn = conn;
+            _eve = eve;
         }
+        
 
-        
-        
-        
+       
+
+
         public Response GetAllUsers()
         {
             
@@ -132,6 +136,57 @@ namespace SpinnerWallArt_FEBE.Server.Models
                 response.StatusMessage = "Product NOT deleted! Try again";
             }
 
+            return response;
+        }
+        public Response GetAllOrders()
+        {
+
+            List<Orders> OrdersList = new List<Orders>();
+            Response response = new Response();
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            var sql = "SELECT * FROM spinnerprints.orders;";
+            //var users = conn.Query(sql);
+            adapter.SelectCommand = new MySqlCommand(sql, _conn);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+
+
+
+
+
+            if (dataTable.Rows.Count > 0)
+            {
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    Orders order = new Orders();
+                    order.OrdersId = Convert.ToInt32(dataTable.Rows[i]["OrdersId"]);
+                    order.OrderNumber = Convert.ToInt32(dataTable.Rows[i]["OrderNumber"]);
+                    order.ID = Convert.ToInt32(dataTable.Rows[i]["ID"]);
+                    order.OrderTotal = Convert.ToDecimal(dataTable.Rows[i]["OrderTotal"]);
+                    order.OrderStatus = Convert.ToString(dataTable.Rows[i]["OrderStatus"]);
+                    
+
+                    OrdersList.Add(order);
+                }
+                if (OrdersList.Count > 0)
+                {
+                    response.StatusCode = 200;
+                    response.StatusMessage = "Displaying All Orders";
+                    response.ListOrders = OrdersList;
+                }
+                else
+                {
+                    response.StatusCode = 100;
+                    response.StatusMessage = "Orders NOT found";
+                    response.ListOrders = OrdersList;
+                }
+            }
+            else
+            {
+                response.StatusCode = 100;
+                response.StatusMessage = "Orders NOT found";
+                response.ListOrders = OrdersList;
+            }
             return response;
         }
 

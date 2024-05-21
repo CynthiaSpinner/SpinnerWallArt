@@ -17,18 +17,20 @@ namespace SpinnerWallArt_FEBE.Server.Models
 
         public Response GetAllProducts(Products products)
         {
+            
             var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
             List<Products> ListProducts = new List<Products>();
             Response response = new Response();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
 
             var sql = "SELECT * FROM spinnerprints.products;";
+            
             //var users = conn.Query(sql);
             adapter.SelectCommand = new MySqlCommand(sql, conn);
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);
-
-
+            
+            
 
 
 
@@ -36,7 +38,10 @@ namespace SpinnerWallArt_FEBE.Server.Models
             {
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
+                   
+
                     Products product = new Products();
+                    
                     product.ProductID = Convert.ToInt32(dataTable.Rows[i]["ProductId"]);
                     product.ProductName = Convert.ToString(dataTable.Rows[i]["ProductName"]);
                     product.Price1 = Convert.ToDecimal(dataTable.Rows[i]["Price1"]);
@@ -49,8 +54,12 @@ namespace SpinnerWallArt_FEBE.Server.Models
                     product.Available = Convert.ToInt32(dataTable.Rows[i]["Available"]);//change to string here and sql
                     product.Discount = Convert.ToDecimal(dataTable.Rows[i]["Discount"]);
                     product.ImageUrl = Convert.ToString(dataTable.Rows[i]["ImageUrl"]);
-                    //user.Created = Convert.ToDateTime(dataTable.Rows[i]["Created"]);
+                    
+                    //product.ImageString= Convert.ToString(dataTable.Rows[i]["ImageUrl"]);
+                   //changed to byte[] unable to convert
+                    //user.Created = Convert.ToDateTime.(dataTable.Rows[i]["Created"]);
                     ListProducts.Add(product);
+                   
                 }
                 if (ListProducts.Count > 0)
                 {
@@ -71,6 +80,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
                 response.StatusMessage = "products details NOT found";
                 response.ListProducts = ListProducts;
             }
+            
             return response;
         }
 

@@ -3,20 +3,7 @@ import React from 'react';
 import '../StyleSheets/Login.css';
 
 export default function Login() {
-    const login = (() => {
-        const password = document.getElementById('password').value;
-        const email = document.getElementById('email').value;
-
-        fetch('https://localhost:7090/api/Home/Login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ Password: password, Email: email, })
-        })
-            .then(response => response.json()).then((data) => {
-                console.log(data)
-            })
-    })
-  
+   
     return (
         <section className="vh-100">
             <div className="container py-5 h-100">
@@ -50,9 +37,7 @@ export default function Login() {
                                                 <label className="form-label" htmlFor="form2Example27">Password</label>
                                             </div>
 
-                                            <div className="pt-1 mb-4">
-                                                <button data-mdb-button-init data-mdb-ripple-init className="btn btn-dark btn-lg btn-block" onClick={login} type="button">Login</button>
-                                            </div>
+                                            
 
                                             <a className="small text-muted" href="#!">Forgot password?</a>
                                             <p className="mb-5 pb-lg-2">Don't have an account? <a href="#!">Register here</a></p>

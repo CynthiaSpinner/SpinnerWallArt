@@ -15,5 +15,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
         public Response AddAndUpdateProd(Products products);
 
         public Response DeleteProduct(Products products);
+
+        public Response GetAllOrders();
     }
 }

@@ -18,8 +18,10 @@ namespace SpinnerWallArt_FEBE.Server.Models
         public string Size3 { get; set; } = "";
         public decimal Discount { get; set; }
         public int Quantity { get; set; }
-        public string ImageUrl { get; set; } = "";
+        public string ImageUrl { get; set; } 
         public int Available { get; set; }
+
+       
 
         //public string Type { get; set; }
 

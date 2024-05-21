@@ -1,7 +1,12 @@
 import React from 'react';
+import Header from './Header'
+
 
 export default function DashBoard() {
     return (
-        <div>DashBoard</div>
+        <div>
+            <Header></Header>
+        </div>
+            
     )
 }

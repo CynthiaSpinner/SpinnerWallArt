@@ -18,27 +18,18 @@ namespace SpinnerWallArt_FEBE.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminController(IAdmin AdminRepository) : ControllerBase
+    public class AdminController(IAdmin AdminRepository, IWebHostEnvironment _eve) : ControllerBase
     {
-        //private readonly IDbConnection _conn;
-        //public AdminController(IDbConnection conn)
-        //{
-        //    _conn = conn;
-        //}
-        //private readonly AdminRepository admin;
-        //Response response = new Response();
+        
 
-        //public AdminController(AdminRepository admin)
-        //{
-        //    this.admin = admin;
-        //}
+     
 
         [HttpGet]
-        [Route("GetAllUsers")]        
+        [Route("GetAllUsers")]
         public Response GetAllUsers()
         {
             Response response = new Response();
-             
+
             response = AdminRepository.GetAllUsers();
             return response;
         }
@@ -52,7 +43,7 @@ namespace SpinnerWallArt_FEBE.Server.Controllers
 
 
             Response response = new Response();
-            
+
             response = AdminRepository.AddAndUpdateProd(products);
             return response;
         }
@@ -60,12 +51,47 @@ namespace SpinnerWallArt_FEBE.Server.Controllers
         [HttpPost]
         [Route("DeleteProduct")]
 
-        public Response DeleteProduct(Products products) 
+        public Response DeleteProduct(Products products)
         {
             Response response = new Response();
-            
+
             response = AdminRepository.DeleteProduct(products);
             return response;
+        }
+
+        [HttpGet]
+        [Route("GetAllOrders")]
+
+        public Response GetAllOrders()
+        {
+            Response response = new Response();
+
+            response = AdminRepository.GetAllOrders();
+            return response;
+        }
+
+        [HttpPost]
+        [Route("SaveFile")]
+
+        public JsonResult SaveFile()
+        {
+            try
+            {
+                var httpRequest = Request.Form;
+                var postedFile = httpRequest.Files[0];
+                string filename = postedFile.FileName;
+                var physicalPath = _eve.ContentRootPath + "/Models/Photos/" + filename;
+                using(var stream = new FileStream(physicalPath,FileMode.Create))
+                {
+                    postedFile.CopyTo(stream);
+                }
+                
+                return new JsonResult(filename);
+            }
+            catch (Exception)
+            {
+                return new JsonResult("anonymous.jpg");
+            }
         }
     }
 }

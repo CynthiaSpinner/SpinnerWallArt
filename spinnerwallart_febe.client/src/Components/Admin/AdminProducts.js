@@ -1,12 +1,13 @@
 import React, {useState, useEffect, useMemo, useCallback} from 'react';
 import AdminHeader from "./AdminHeader";
+import ProductTable from "./ProductTable";
 import '../../StyleSheets/Registration.css';
 
 
 export default function AdminProducts() {
     const [adminproducts, setAdminProducts] = useState([{productID: 0}])
 
-
+    /*const [imageProduct, setImageProducts] = useState("")*/
     const addAndUpdate = useCallback(() => {
         const available = document.getElementById('available').value;
         const productName = document.getElementById('productName').value;
@@ -18,28 +19,37 @@ export default function AdminProducts() {
         const size3 = document.getElementById('size3').value;
         const discount = document.getElementById('discount').value;
         const quantity = document.getElementById('quantity').value;
-        const imageUrl = document.getElementById('imageUrl').value;
-        const imageName = imageUrl.slice(imageUrl.lastIndexOf('\\')+1, imageUrl.length)
-        
-        const imageFile = `../../../public/Images/${imageName}`
-        console.log(imageName)
-        fetch('https://localhost:7090/api/Admin/AddAndUpdateProd', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                productName: productName,
-                price1: price1,
-                price2: price2,
-                price3: price3,
-                size1: size1,
-                size2: size2,
-                size3: size3,
-                discount: discount,
-                quantity: quantity,
-                imageUrl: imageFile,
-                available: available
-            })
+        const imageUrl = document.getElementById('imageUrl').files;
+        const file = imageUrl[0];
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch('https://localhost:7090/api/Admin/SaveFile', {
+            method: 'POST', 
+            
+            body: formData
+            
         })
+            .then(response => response.json()).then((data) => {
+                console.log(data)
+                fetch('https://localhost:7090/api/Admin/AddAndUpdateProd', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        productName: productName,
+                        price1: price1,
+                        price2: price2,
+                        price3: price3,
+                        size1: size1,
+                        size2: size2,
+                        size3: size3,
+                        discount: discount,
+                        quantity: quantity,
+                        imageUrl: data,
+                        available: available
+                    })
+                })
+            })        
     }  , [])
             
     useEffect(() => {
@@ -66,160 +76,29 @@ export default function AdminProducts() {
 
         })
             .then(response => response.json()).then((data) => {
-                console.log(data.listProducts)
-                setAdminProducts(data.listProducts)
+                console.log(data.ListProducts)
+                setAdminProducts(data.ListProducts)
             })
     }, [])
-    const delete1 = (e) => {
-        console.log(e);
-        const name = e.target.value;
-        console.log(name)
-        fetch('https://localhost:7090/api/Admin/DeleteProduct', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                productName: name,
-               
-            })
-        })
-}
+    
+
     
     return (
         /* GetAllProducts*/
       <main className="background">
             <section className="background" >
-                <div>
-
-                </div>
+               
                 <div className="background">   
                     <AdminHeader></AdminHeader>
                 </div>
             
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th id="productid" scope="col">Product ID</th>
-                            <th id="productname" scope="col">Product Name</th>
-                            <th id="imageurl" scope="col">ImageUrl</th>
-
-                            <th id="size1" scope="col">Size 1</th>
-                            <th id="price1" scope="col">Price</th>
-
-                            <th id="size2" scope="col">Size 2</th>
-                            <th id="price2" scope="col">Price</th>
-
-                            <th id="size3" scope="col">Size 3</th>
-                            <th id="price3" scope="col">Price</th>
-
-                            <th id="available" scope="col">Available</th>
-                            <th id="quantity" scope="col">Quantity</th>
-                            
-                            <th id="discount" scope="col">Discount</th>
-                            
-                            
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">{adminproducts[0]?.productID}</th>
-                            <td>{adminproducts[0]?.productName}</td>
-                            <td>{adminproducts[0]?.imageUrl}</td>
-                           
-                            <td>{adminproducts[0]?.size1}</td>
-                            <td>{adminproducts[0]?.price1}</td>
-                            <td>{adminproducts[0]?.size2}</td>
-                            <td>{adminproducts[0]?.price2}</td>
-                            <td>{adminproducts[0]?.size3}</td>
-                            <td>{adminproducts[0]?.price3}</td>
-                            <td>{adminproducts[0]?.available}</td>
-                            <td>{adminproducts[0]?.quantity}</td>
-                            <td>{adminproducts[0]?.discount}</td>
-                            <td>
-                                <button value={adminproducts[0]?.productName} className="delete-button" type="delete" onClick={delete1} >Delete</button>
-                            </td>
-                            
-                        </tr>
-                        <tr>
-                            <th scope="row">{adminproducts[1]?.productID}</th>
-                            <td>{adminproducts[2]?.productName}</td>
-                            <td>{adminproducts[1]?.imageUrl}</td>
-                            
-                            <td>{adminproducts[1]?.size1}</td>
-                            <td>{adminproducts[1]?.price1}</td>
-                            <td>{adminproducts[1]?.size2}</td>
-                            <td>{adminproducts[1]?.price2}</td>
-                            <td>{adminproducts[1]?.size3}</td>
-                            <td>{adminproducts[1]?.price3}</td>
-                            <td>{adminproducts[1]?.available}</td>
-                            <td>{adminproducts[1]?.quantity}</td>
-                            <td>{adminproducts[1]?.discount}</td>
-                            <td>
-                                <button value={adminproducts[0]?.productName} className="delete-button" type="delete" onClick={delete1} >Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">{adminproducts[2]?.productID}</th>
-                            <td>{adminproducts[2]?.productName}</td>
-                            <td>{adminproducts[2]?.imageUrl}</td>
-                            
-                            <td>{adminproducts[2]?.size1}</td>
-                            <td>{adminproducts[2]?.price1}</td>
-                            <td>{adminproducts[2]?.size2}</td>
-                            <td>{adminproducts[2]?.price2}</td>
-                            <td>{adminproducts[2]?.size3}</td>
-                            <td>{adminproducts[2]?.price3}</td>
-                            <td>{adminproducts[2]?.available}</td>
-                            <td>{adminproducts[2]?.quantity}</td>
-                            <td>{adminproducts[2]?.discount}</td>
-                            <td>
-                                <button value={adminproducts[0]?.productName} className="delete-button" type="delete" onClick={delete1} >Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">{adminproducts[3]?.productID}</th>
-                            <td>{adminproducts[3]?.productName}</td>
-                            <td>{adminproducts[3]?.imageUrl}</td>
-                            
-                            <td>{adminproducts[3]?.size1}</td>
-                            <td>{adminproducts[3]?.price1}</td>
-                            <td>{adminproducts[3]?.size2}</td>
-                            <td>{adminproducts[3]?.price2}</td>
-                            <td>{adminproducts[3]?.size3}</td>
-                            <td>{adminproducts[3]?.price3}</td>
-                            <td>{adminproducts[3]?.available}</td>
-                            <td>{adminproducts[3]?.quantity}</td>
-                            <td>{adminproducts[3]?.discount}</td>
-                            <td>
-                                <button value={adminproducts[0]?.productName} className="delete-button" type="delete" onClick={delete1} >Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">{adminproducts[4]?.productID}</th>
-                            <td>{adminproducts[4]?.productName}</td>
-                            <td>{adminproducts[4]?.imageUrl}</td>
-                           
-                            <td>{adminproducts[4]?.size1}</td>
-                            <td>{adminproducts[4]?.price1}</td>
-                            <td>{adminproducts[4]?.size2}</td>
-                            <td>{adminproducts[4]?.price2}</td>
-                            <td>{adminproducts[4]?.size3}</td>
-                            <td>{adminproducts[4]?.price3}</td>
-                            <td>{adminproducts[4]?.available}</td>
-                            <td>{adminproducts[4]?.quantity}</td>
-                            <td>{adminproducts[4]?.discount}</td>
-                            <td>
-                                <button value={adminproducts[0]?.productName} className="delete-button" type="delete" onClick={delete1} >Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-        </section>
+                <ProductTable products={adminproducts}></ProductTable>
+            </section>
             <section className="gradient">
                 <div className="container-form">
                     <div className="container2">
                         <div className="col1">
-                            <div className="card shadow-2-strong card-registration">
+                            <div className="card">
                                 <div className="card-body">
                                     <h3 className="mb-4 pb-2 pb-md-0 mb-md-5">Add or Update Product</h3>
                                     <div htmlFor='form_element'>
@@ -316,15 +195,7 @@ export default function AdminProducts() {
                                                 <label htmlFor="formFileSm" className="slabel">Upload Image</label>
                                             </div>
                                             
-                                        </div>
-
-
-                                        
-
-
-
-                                       
-                                        
+                                        </div>                                  
 
                                         <div className="mt-4 pt-2">
                                             <button data-mdb-ripple-init className="sub" type="submit" onClick={addAndUpdate} >Submit</button>
@@ -337,7 +208,7 @@ export default function AdminProducts() {
                     </div>
                 </div>
                 
-        </section>
+            </section>
       </main>
     )
 }

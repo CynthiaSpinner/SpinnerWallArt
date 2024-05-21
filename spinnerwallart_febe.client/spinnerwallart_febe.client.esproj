@@ -11,6 +11,5 @@
   <ItemGroup>
     <Folder Include="src\Components\Users\" />
     <Folder Include="src\Components\Admin\" />
-    <Folder Include="src\StyleSheets\" />
   </ItemGroup>
 </Project>

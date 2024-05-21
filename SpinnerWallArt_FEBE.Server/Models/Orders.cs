@@ -10,8 +10,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
     {
         public int OrdersId { get; set; }
         public int ID { get; set; }
-        public int OrderNumber { get; set; }
-        public int UserID { get; set; }
+        public int OrderNumber { get; set; }        
         public decimal OrderTotal { get; set; }
         public string OrderStatus { get; set; }
     }

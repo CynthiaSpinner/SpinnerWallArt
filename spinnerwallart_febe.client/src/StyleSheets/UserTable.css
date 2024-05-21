@@ -1,0 +1,186 @@
+.userTable {
+    display: inline-flex;
+    position: center;
+    padding-left: 11%;
+    padding-right: 11%;
+    margin-top: 250px;
+    width: 100%;
+    max-height:60%;
+    border-top: 1px solid rgb(173,203,227 );
+    border-bottom: 1px solid rgb(173,203,227 );
+    background: rgba(173,203,227, .3);
+}
+
+.userTable-Cols {
+    display: block;
+    position: fixed;
+    max-width: 100%;
+    background: rgb(0,0,0);
+    border-right: 1px solid rgb(173,203,227 );
+    
+    font-family: Arial, Helvetica, sans-serif;
+    
+    border-left: 1px solid rgb(173,203,227 );
+}
+tbody {
+    
+    margin-top: 44px;
+    border: 1px solid rgb(173,203,227 );
+}
+#id {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+#firstName {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 90px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+#lastName {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 90px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+#password {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 90px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+#email {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 300px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+#totalAmount {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 110px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+#type {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+#status {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+#created {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 200px;
+    padding: 10px 30px;
+}
+
+.userTable-Rows-Alt {
+    display: block;
+    width: 100%;
+    background: rgba(0,0,0, .5);
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+.userTable-Rows {
+    display: block;
+    width: 100%;
+    background: rgba(0,0,0, .3);
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+#row-ID {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+}
+
+#row-FN {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 90px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-LN {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 90px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-P {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 90px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-E {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 300px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-T {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-S {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-TA {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 110px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-C {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 200px;
+    padding: 10px 30px;
+    text-align: center;
+}

@@ -7,6 +7,9 @@ using System;
 using SpinnerWallArt_FEBE.Server.Models;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Newtonsoft.Json.Serialization;
 
 namespace SpinnerWallArt_FEBE.Server
 {
@@ -24,7 +27,10 @@ namespace SpinnerWallArt_FEBE.Server
 
             builder.Services.AddSingleton<IAdmin, AdminRepository>();
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+                .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver
+                = new DefaultContractResolver());
             
 
 
@@ -32,13 +38,16 @@ namespace SpinnerWallArt_FEBE.Server
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddCors();
+            builder.Services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
+            });
 
             var app = builder.Build();
 
             app.UseDefaultFiles();
-            app.UseStaticFiles();
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000"));
+           
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 
             // Configure the HTTP request pipeline.
@@ -54,7 +63,12 @@ namespace SpinnerWallArt_FEBE.Server
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                   Path.Combine(Directory.GetCurrentDirectory(), "Models/Photos")),
+                RequestPath = "/Models/Photos"
+            });
 
             app.MapControllerRoute(
                 name: "default",
