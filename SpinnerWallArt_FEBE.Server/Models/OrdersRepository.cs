@@ -1,25 +1,26 @@
-﻿using System;
-using System.Data;
-using System.Collections.Generic;
-using Dapper;
+﻿using System.Data;
 using MySql.Data.MySqlClient;
 
 namespace SpinnerWallArt_FEBE.Server.Models
 {
-    public class OrdersRepository
+    public class OrdersRepository : IOrders
     {
-        public Response OrderList(Users users)
+        private readonly MySqlConnection _conn;
+        public OrdersRepository(MySqlConnection conn)
         {
-            var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
+            _conn = conn;
+
+        }
+        public Response OrderList(Users users)
+        {            
             List<Orders> OrdersList = new List<Orders>();
             Response response = new Response();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
 
             var sql = "SELECT * FROM spinnerprints.orders Where @ID=ID;";
-            //var users = conn.Query(sql);
-            adapter.SelectCommand = new MySqlCommand(sql, conn);
-            //adapter.SelectCommand.Parameters.AddWithValue("@Type", users.Type);
+            adapter.SelectCommand = new MySqlCommand(sql, _conn);
             adapter.SelectCommand.Parameters.AddWithValue("@ID", users.ID); //Work out getting orders to user id 
+
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);
 

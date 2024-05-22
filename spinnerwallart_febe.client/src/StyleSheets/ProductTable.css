@@ -9,6 +9,7 @@
     border-top: 1px solid rgb(173,203,227 );
     border-bottom: 1px solid rgb(173,203,227 );
     background: rgba(173,203,227, .3);
+    z-index: -200;
 }
 .productTable-Cols {
     display: block;

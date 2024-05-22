@@ -1,14 +1,6 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
 using MySql.Data.MySqlClient;
-using System.Data;
-using System;
 using SpinnerWallArt_FEBE.Server.Models;
-using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using System.IO;
 using Newtonsoft.Json.Serialization;
 
 namespace SpinnerWallArt_FEBE.Server
@@ -21,9 +13,7 @@ namespace SpinnerWallArt_FEBE.Server
 
             builder.Services.AddTransient<MySqlConnection>(_ =>
             
-                new MySqlConnection(builder.Configuration.GetConnectionString("spinner")));
-               
-            
+                new MySqlConnection(builder.Configuration.GetConnectionString("spinner")));             
 
             builder.Services.AddSingleton<IAdmin, AdminRepository>();
             // Add services to the container.
@@ -31,8 +21,6 @@ namespace SpinnerWallArt_FEBE.Server
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
                 .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver
                 = new DefaultContractResolver());
-            
-
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -48,7 +36,6 @@ namespace SpinnerWallArt_FEBE.Server
             app.UseDefaultFiles();
            
             app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
-
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -77,8 +64,7 @@ namespace SpinnerWallArt_FEBE.Server
             app.MapFallbackToFile("/index.html");
 
             app.Run();
-
-            
+  
         }
     }
 }

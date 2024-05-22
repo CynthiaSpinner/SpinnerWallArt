@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using MySql.Data.MySqlClient;
-using Dapper;
-using SpinnerWallArt_FEBE.Server.Models;
-
+﻿
 namespace SpinnerWallArt_FEBE.Server.Models
 {
     public class Products
@@ -19,11 +14,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
         public decimal Discount { get; set; }
         public int Quantity { get; set; }
         public string ImageUrl { get; set; } 
-        public int Available { get; set; }
-
-       
-
-        //public string Type { get; set; }
+        public int Available { get; set; }  
 
     }
 }

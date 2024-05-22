@@ -1,11 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Linq;
-using System.Collections.Generic;
-using MySql.Data.MySqlClient;
-using Dapper;
-using SpinnerWallArt_FEBE.Server.Models;
-
+﻿
 namespace SpinnerWallArt_FEBE.Server.Models
 {   
         public class Response

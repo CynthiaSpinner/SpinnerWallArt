@@ -5,12 +5,18 @@ namespace SpinnerWallArt_FEBE.Server.Models
 {
     public class CartRepository
     {
-        public Response AddToCart(Cart cart)
+        private readonly MySqlConnection _conn;
+        public CartRepository(MySqlConnection conn)
         {
-            var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
+            _conn = conn;
+
+        }
+        public Response AddToCart(Cart cart)
+        {            
             Response response = new Response();
-            MySqlCommand cmd = new MySqlCommand("Spi_AddToCart", conn);
+            MySqlCommand cmd = new MySqlCommand("Spi_AddToCart", _conn);
             cmd.CommandType = CommandType.StoredProcedure;
+
             cmd.Parameters.AddWithValue("@CartId", cart.CartID);
             cmd.Parameters.AddWithValue("@Price", cart.Price);
             cmd.Parameters.AddWithValue("@Discount", cart.Discount);
@@ -19,9 +25,9 @@ namespace SpinnerWallArt_FEBE.Server.Models
             cmd.Parameters.AddWithValue("@ProductID", cart.ProductID);
             cmd.Parameters.AddWithValue("@Size", cart.Size);
 
-            conn.Open();
+            _conn.Open();
             int i = cmd.ExecuteNonQuery();
-            conn.Close();
+            _conn.Close();
 
             if (i > 0)
             {
@@ -38,15 +44,15 @@ namespace SpinnerWallArt_FEBE.Server.Models
         }
 
         public Response PlaceOrder(Users users)
-        {
-            var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
+        {            
             Response response = new Response();
-            MySqlCommand cmd = new MySqlCommand("Spi_placeOrder", conn);
+            MySqlCommand cmd = new MySqlCommand("Spi_placeOrder", _conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@ID", users.ID);
-            conn.Open();
+
+            _conn.Open();
             int i = cmd.ExecuteNonQuery();
-            conn.Close();
+            _conn.Close();
 
             if (i > 0)
             {

@@ -1,25 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System.Data;
-using Dapper;
+
 
 namespace SpinnerWallArt_FEBE.Server.Models
-{
-    public class UsersRepository 
-    {
+{    
+    public class UsersRepository : IUsers
+    {      
+        private readonly MySqlConnection _conn;
 
-        
-        public Response Login(Users users)
+        public UsersRepository(MySqlConnection conn)
         {
-            var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
+            _conn = conn;
+        }
+
+        public Response Login(Users users)
+        {           
             Response response = new Response();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
-            string s = "select ID, FirstName, LastName, Email, Type from spinnerprints.users where Email=@Email and  Password=@Password";
-            adapter.SelectCommand = new MySqlCommand(s, conn);
 
+            string s = "select ID, FirstName, LastName, Email, Type from spinnerprints.users where Email=@Email and  Password=@Password";
+            adapter.SelectCommand = new MySqlCommand(s, _conn);
             adapter.SelectCommand.Parameters.AddWithValue("@Email", users.Email);
             adapter.SelectCommand.Parameters.AddWithValue("@Password", users.Password);
 
@@ -46,16 +46,13 @@ namespace SpinnerWallArt_FEBE.Server.Models
             }
             return response;
         }
-
         
         public Response Register(Users users)
         {
-            var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
             Response response = new Response();
-            MySqlCommand cmd = new MySqlCommand("spi_register", conn);
+            MySqlCommand cmd = new MySqlCommand("spi_register", _conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            // add to stored procedure if name and email are a match return 100
-            //cmd.Parameters.AddWithValue("@ID", );
+            
             cmd.Parameters.AddWithValue("@FirstName", users.FirstName);
             cmd.Parameters.AddWithValue("@LastName", users.LastName);
             cmd.Parameters.AddWithValue("@Password", users.Password);
@@ -63,12 +60,10 @@ namespace SpinnerWallArt_FEBE.Server.Models
             cmd.Parameters.AddWithValue("@TotalAmount", 0);
             cmd.Parameters.AddWithValue("@Type", "Users");
             cmd.Parameters.AddWithValue("@Status", 2); //change status to string and set default to pending, in sql then update here and user class
-            //work on getting date and time working
-            conn.Open();
-
+            //work on getting date and time 
+            _conn.Open();
             int i = cmd.ExecuteNonQuery();
-
-            conn.Close();
+            _conn.Close();
 
             if (i > 0)
             {
@@ -85,13 +80,14 @@ namespace SpinnerWallArt_FEBE.Server.Models
 
         public Response UserView(Users users)
         {
-            var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
-            MySqlDataAdapter adapter = new MySqlDataAdapter("c_userView", conn);
+            Response response = new Response();
+            MySqlDataAdapter adapter = new MySqlDataAdapter("c_userView", _conn);
             adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             adapter.SelectCommand.Parameters.AddWithValue("@ID", users.ID);
+
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);
-            Response response = new Response();
+            
             Users user = new Users();
             if (dataTable.Rows.Count > 0)
             {
@@ -118,8 +114,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
         }
 
         public Response ProfileUpdate(Users users)
-        {
-            var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
+        {            
             Response response = new Response();
             MySqlCommand cmd = new MySqlCommand("spi_profileUpdate");
             cmd.CommandType = CommandType.StoredProcedure;
@@ -127,9 +122,9 @@ namespace SpinnerWallArt_FEBE.Server.Models
             cmd.Parameters.AddWithValue("@FirstName", users.LastName);
             cmd.Parameters.AddWithValue("@FirstName", users.Password);
             cmd.Parameters.AddWithValue("@FirstName", users.Email);
-            conn.Open();
+            _conn.Open();
             int i = cmd.ExecuteNonQuery();
-            conn.Close();
+            _conn.Close();
             if (i > 0)
             {
                 response.StatusCode = 200;
@@ -140,7 +135,6 @@ namespace SpinnerWallArt_FEBE.Server.Models
                 response.StatusCode = 100;
                 response.StatusMessage = "Error occured, try again later";
             }
-
             return response;
         }
     }

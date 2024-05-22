@@ -1,6 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Collections.Generic;
+﻿using System.Data;
 using Dapper;
 using MySql.Data.MySqlClient;
 
@@ -16,27 +14,18 @@ namespace SpinnerWallArt_FEBE.Server.Models
         {
             _conn = conn;
             _eve = eve;
-        }
-        
-
-       
-
-
+        }        
         public Response GetAllUsers()
         {
             
             List<Users> UsersList = new List<Users>();
             Response response = new Response();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
-            var sql = "SELECT * FROM spinnerprints.users;";
-            //var users = conn.Query(sql);
+            var sql = "SELECT * FROM spinnerprints.users;";            
             adapter.SelectCommand = new MySqlCommand(sql, _conn);
+
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);
-
-
-
-            
 
             if (dataTable.Rows.Count > 0)
             {
@@ -75,11 +64,8 @@ namespace SpinnerWallArt_FEBE.Server.Models
             return response;
         }
 
-
         public Response AddAndUpdateProd(Products products)
-        {
-
-            
+        {            
             Response response = new Response();
             MySqlCommand cmd = new MySqlCommand("Spi_AddAndUpdateProd", _conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -94,8 +80,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
             cmd.Parameters.AddWithValue("@Quantity", products.Quantity);
             cmd.Parameters.AddWithValue("@Discount", products.Discount);
             cmd.Parameters.AddWithValue("@Available", products.Available);
-            cmd.Parameters.AddWithValue("@ImageUrl", products.ImageUrl);
-            
+            cmd.Parameters.AddWithValue("@ImageUrl", products.ImageUrl);            
 
             _conn.Open();
             int i = cmd.ExecuteNonQuery();
@@ -116,11 +101,8 @@ namespace SpinnerWallArt_FEBE.Server.Models
         }
         public Response DeleteProduct(Products products)
         {
-            
             Response response = new Response();
-           
-            
-
+    
             _conn.Open();
             int i = _conn.Execute("DELETE FROM spinnerprints.products WHERE @ProductName = ProductName;", new { productName = products.ProductName });
             _conn.Close();
@@ -135,24 +117,19 @@ namespace SpinnerWallArt_FEBE.Server.Models
                 response.StatusCode = 100;
                 response.StatusMessage = "Product NOT deleted! Try again";
             }
-
             return response;
         }
+
         public Response GetAllOrders()
         {
-
             List<Orders> OrdersList = new List<Orders>();
             Response response = new Response();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
-            var sql = "SELECT * FROM spinnerprints.orders;";
-            //var users = conn.Query(sql);
+            var sql = "SELECT * FROM spinnerprints.orders;";            
             adapter.SelectCommand = new MySqlCommand(sql, _conn);
+
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);
-
-
-
-
 
             if (dataTable.Rows.Count > 0)
             {
@@ -164,7 +141,6 @@ namespace SpinnerWallArt_FEBE.Server.Models
                     order.ID = Convert.ToInt32(dataTable.Rows[i]["ID"]);
                     order.OrderTotal = Convert.ToDecimal(dataTable.Rows[i]["OrderTotal"]);
                     order.OrderStatus = Convert.ToString(dataTable.Rows[i]["OrderStatus"]);
-                    
 
                     OrdersList.Add(order);
                 }

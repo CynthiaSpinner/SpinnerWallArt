@@ -1,44 +1,31 @@
-﻿using System;
-using System.Data;
-using System.Collections.Generic;
-using Dapper;
+﻿using System.Data;
 using MySql.Data.MySqlClient;
 
 namespace SpinnerWallArt_FEBE.Server.Models
 {
-    public class ProductsRepository 
+    public class ProductsRepository : IProducts
     {
-        //private readonly IDbConnection _conn;
-
-        //public ProductsRepository(IDbConnection conn)
-        //{
-        //    _conn = conn;
-        //}
-
-        public Response GetAllProducts(Products products)
+        private readonly MySqlConnection _conn;
+        public ProductsRepository(MySqlConnection conn)
         {
+            _conn = conn;
             
-            var conn = new MySqlConnection("Server=localhost;Database=spinnerprints;uid=root;Pwd=password;Port=3306;");
+        }
+        public Response GetAllProducts(Products products)
+        {          
             List<Products> ListProducts = new List<Products>();
             Response response = new Response();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
-
             var sql = "SELECT * FROM spinnerprints.products;";
-            
-            //var users = conn.Query(sql);
-            adapter.SelectCommand = new MySqlCommand(sql, conn);
+            adapter.SelectCommand = new MySqlCommand(sql, _conn);
+
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);
-            
-            
-
-
 
             if (dataTable.Rows.Count > 0)
             {
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
-                   
 
                     Products product = new Products();
                     
@@ -54,12 +41,8 @@ namespace SpinnerWallArt_FEBE.Server.Models
                     product.Available = Convert.ToInt32(dataTable.Rows[i]["Available"]);//change to string here and sql
                     product.Discount = Convert.ToDecimal(dataTable.Rows[i]["Discount"]);
                     product.ImageUrl = Convert.ToString(dataTable.Rows[i]["ImageUrl"]);
-                    
-                    //product.ImageString= Convert.ToString(dataTable.Rows[i]["ImageUrl"]);
-                   //changed to byte[] unable to convert
-                    //user.Created = Convert.ToDateTime.(dataTable.Rows[i]["Created"]);
+
                     ListProducts.Add(product);
-                   
                 }
                 if (ListProducts.Count > 0)
                 {
@@ -79,16 +62,8 @@ namespace SpinnerWallArt_FEBE.Server.Models
                 response.StatusCode = 100;
                 response.StatusMessage = "products details NOT found";
                 response.ListProducts = ListProducts;
-            }
-            
+            }            
             return response;
-        }
-
-        //public Products GetProduct(int productId)
-        //{
-        //    return _conn.QuerySingle<Products>("SELECT * FROM spinnerprints.Products WHERE ProductID = @ProductID", new { productid = productId });
-        //}
-
-        
+        } 
     }
 }

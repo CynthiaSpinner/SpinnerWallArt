@@ -1,23 +1,25 @@
 .editSection {
-   width:100%;
-    
+    width: 100%;
+    z-index: 40;
 }
 .editProductPopUp {
     display: inline-block;
     z-index: 200;
-    margin-top: 450px;
+    margin-top: 400px;
     background: none;
     margin-right: 10%;
     margin-left: 30%;
     height: 500px;
     width: 900px;
-    background: rgba(173,203,227, .25);
-    
+    background: rgba(36,40,43, .8);
+    border-radius: 15px;
     border: 1px solid rgb(173,203,227 );
+    box-shadow: 0px 0px 10px rgba(231,239,246, .7);
 }
 
 .editProductContainer {
-    padding: 10px 60px;
+    padding: 10px 60px 10px 85px;
+    z-index: 200;
 }
 
 .editProducts-FormBody {
@@ -25,10 +27,10 @@
 }
 
 .editFormHeading {
-    color: rgb(231,239,246);
+    color: rgba(231,239,246, .7);
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 100;
-    text-align: center;
+    padding-left: 34%;
     margin-bottom: 30px;
 }
 
@@ -37,29 +39,100 @@
 }
 
 .row {
-
+    display: inline-block;
+    
 }
 
 .col {
-    height: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgb(231,239,246);
-
+    display: inline-block;
+    position: center;
+    align-content: baseline;
+    height: 40px;
+    margin-top: 5px;
+    padding: 10px 0;
+    width: 50%;
 }
 
 .productFormLabel {
+    
     font-family: Arial, Helvetica, sans-serif;
-    color: rgb(231,239,246);
+    color: rgb(173,203,227);
+    font-size: 17px;
+    font-weight: 100;
 }
 
 .form {
 }
 
 .productFormFill {
+    background: rgba(42,77,105, .05);
+    float: right;
+    height: 21px;
+    margin-right: 40px;
+    padding-right: 30px;
+    border: 1px solid rgba(173,203,227, .5 );
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px rgba(231,239,246, .7);
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgba(231,239,246, .7);
+    font-weight: 100;
+    position: center;
+    
+}
+.chooseFile {
+  
 }
 
-.file {
+.filePosition {
+    position: center;
+    width: 100%;
+    margin-left: 40%;
+    margin-top: 15px;
+    background: none;
+    border-radius: 10px;
 }
 
-.uploadImg {
+.form-control {
+    display: inline-block;
+    border: 1px solid rgba(173,203,227, .5 );
+    box-shadow: 0px 0px 4px rgba(231,239,246, .7);
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgba(231,239,246, .7);
+    font-weight: 100;
+    background: rgba(42,77,105, .05);
+    border-radius: 5px;
+    height: 22px;
+    width: 15%;
+}
+
+input[type="file"]:before {
+    content: "Upload Photo";
+    background: none;
+    width: 100%;
+    height: 22px;
+    display: block;
+    text-align: left;
+    position: relative;
+    margin: 0;
+    margin: 0 5px;
+    left: -6px;
+    border: 1px solid #e0e0e0;
+    top: -1px;
+    line-height: 25px;
+    color: rgba(231,239,246, .7);
+    padding-left: 12px;
+}
+
+.sub {
+    width: 10%;
+    float: right;
+    background: rgba(42,77,105, .05);
+    border: 1px solid rgba(173,203,227, .5 );
+    border-radius: 5px;
+    height: 22px;
+    box-shadow: 0px 0px 4px rgba(231,239,246, .7);
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgba(231,239,246, .7);
+    font-weight: 100;
+    margin-bottom: 50px;
 }

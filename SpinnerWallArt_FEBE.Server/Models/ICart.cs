@@ -2,5 +2,8 @@
 {
     public interface ICart
     {
+        //TODO
+        //for cart and placing orders
+        //implement from repository
     }
 }
