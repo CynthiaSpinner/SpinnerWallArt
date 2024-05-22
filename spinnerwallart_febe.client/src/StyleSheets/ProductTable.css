@@ -1,2 +1,271 @@
-body {
+.productTable {
+    display: inline-flex;
+    position: fixed;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 250px;
+    width: 100%;
+    max-height: 60%;
+    border-top: 1px solid rgb(173,203,227 );
+    border-bottom: 1px solid rgb(173,203,227 );
+    background: rgba(173,203,227, .3);
+}
+.productTable-Cols {
+    display: block;
+    position: fixed;
+    max-width: 100%;
+    background: rgb(0,0,0);
+    border-right: 1px solid rgb(173,203,227 );
+    font-family: Arial, Helvetica, sans-serif;
+    border-left: 1px solid rgb(173,203,227 );
+}
+
+#productId {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 90px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+
+#productName {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 110px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+
+#imageUrl {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 150px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+
+#sizeS {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+
+#priceS {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+
+#sizeM {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+
+#priceM {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+
+#sizeL {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+
+#priceL {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+
+#available1 {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+
+#quantity1 {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+
+#discount1 {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px solid rgb(173,203,227 );
+}
+
+#options {
+    font-weight: 100;
+    color: rgb(231,239,246);
+    width: 80px;
+    padding: 10px 30px;   
+}
+
+tbody {
+    margin-top: 44px;
+    border: 1px solid rgb(173,203,227 );
+}
+
+.rowStyleProd {
+    display: block;
+    width: 100%;
+    background: rgba(0,0,0, .3);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.rowStleProd-Alt {
+    display: block;
+    width: 100%;
+    background: rgba(0,0,0, .5);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#row-id {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 90px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+}
+
+#row-PN {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 110px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-I {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 150px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-S1 {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-P1 {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 81px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-S2 {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-P2 {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 81px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-S3 {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-P3 {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-A {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-Q {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-D {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 80px;
+    padding: 10px 30px;
+    border-right: 1px groove rgba(173,203,227, .3);
+    text-align: center;
+}
+
+#row-O {
+    color: rgba(173,203,227, .7 );
+    font-weight: 100;
+    width: 79px;
+    padding: 10px 30px;
+    text-align: center;
+}
+
+.fa-regular {
+    padding-right: 30px;
+    background: none;
+    border: none;
+    color: rgba(173,203,227, .7);
+}
+
+.fas {
+    color: rgb(99,172,229);
+    background: none;
+    border: none;
 }

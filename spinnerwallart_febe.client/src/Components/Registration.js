@@ -1,5 +1,5 @@
 import React from 'react';
-import '../StyleSheets/Registration.css';
+
 
 export default function Registration() {
     const registration = (() => {

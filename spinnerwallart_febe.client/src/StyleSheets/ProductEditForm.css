@@ -1,0 +1,65 @@
+.editSection {
+   width:100%;
+    
+}
+.editProductPopUp {
+    display: inline-block;
+    z-index: 200;
+    margin-top: 450px;
+    background: none;
+    margin-right: 10%;
+    margin-left: 30%;
+    height: 500px;
+    width: 900px;
+    background: rgba(173,203,227, .25);
+    
+    border: 1px solid rgb(173,203,227 );
+}
+
+.editProductContainer {
+    padding: 10px 60px;
+}
+
+.editProducts-FormBody {
+    
+}
+
+.editFormHeading {
+    color: rgb(231,239,246);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.editForm {
+
+}
+
+.row {
+
+}
+
+.col {
+    height: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(231,239,246);
+
+}
+
+.productFormLabel {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(231,239,246);
+}
+
+.form {
+}
+
+.productFormFill {
+}
+
+.file {
+}
+
+.uploadImg {
+}

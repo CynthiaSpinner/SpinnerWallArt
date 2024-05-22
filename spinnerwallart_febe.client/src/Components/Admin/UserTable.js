@@ -35,6 +35,10 @@ export default function UserTable({ users }) {
                 <td id="row-T" >{user.Type}</td>
                 <td id="row-S" >{user.Status}</td>                
                 <td id="row-C" >{user.Created}</td>
+                <td id="row-O" >
+                    <i className="fa-regular fa-pen-to-square"></i>
+                    <i className="fas fa-trash"></i>
+                </td>
             </tr>
         )
     }
@@ -53,6 +57,7 @@ export default function UserTable({ users }) {
                     <th id="type" scope="col">Type</th>
                     <th id="status" scope="col">Status</th>
                     <th id="created" scope="col">Created</th>
+                    <th id="user-options" scope="col">Options</th>
                 </tr>
             </thead>
             <tbody>

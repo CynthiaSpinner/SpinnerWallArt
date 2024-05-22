@@ -1,11 +1,13 @@
 import React, {useState, useEffect, useMemo, useCallback} from 'react';
 import AdminHeader from "./AdminHeader";
 import ProductTable from "./ProductTable";
-import '../../StyleSheets/Registration.css';
+import '../../StyleSheets/ProductEditForm.css';
 
 
 export default function AdminProducts() {
-    const [adminproducts, setAdminProducts] = useState([{productID: 0}])
+    const [adminproducts, setAdminProducts] = useState([{ productID: 0 }])
+
+    const [editProducts, setEditProducts] = useState(false);
 
     /*const [imageProduct, setImageProducts] = useState("")*/
     const addAndUpdate = useCallback(() => {
@@ -85,31 +87,29 @@ export default function AdminProducts() {
     
     return (
         /* GetAllProducts*/
-      <main className="background">
+        <div>
             <section className="background" >
                
                 <div className="background">   
                     <AdminHeader></AdminHeader>
                 </div>
             
-                <ProductTable products={adminproducts}></ProductTable>
+                <ProductTable products={adminproducts} editProducts={editProducts} setEditProducts={setEditProducts}></ProductTable>
             </section>
-            <section className="gradient">
-                <div className="container-form">
-                    <div className="container2">
-                        <div className="col1">
-                            <div className="card">
-                                <div className="card-body">
-                                    <h3 className="mb-4 pb-2 pb-md-0 mb-md-5">Add or Update Product</h3>
-                                    <div htmlFor='form_element'>
+            <section className="editSection">
+                    {editProducts && <div className="editProductPopUp">
+                            <div className="editProductContainer">                  
+                                <div className="editProducts-FormBody">
+                                    <h3 className="editFormHeading">Add or Update Product</h3>
+                                    <div htmlFor='editForm'>
 
                                         <div className="row">
-                                           
+
                                             <div className="col">
 
                                                 <div data-mdb-input-init className="form">
-                                                    <input type="text" id="productName" className="form-control form-control-lg" autoComplete="given-name" />
-                                                    <label className="form-label" htmlFor="productName">Product Name</label>
+                                                    <input type="text" id="productName" className="productFormFill"  />
+                                                    <label className="productFormLabel" htmlFor="productName">Product Name</label>
                                                 </div>
 
                                             </div>
@@ -117,8 +117,8 @@ export default function AdminProducts() {
                                             <div className="col">
 
                                                 <div data-mdb-input-init className="form">
-                                                    <input type="text" id="available" className="form-control form-control-lg" autoComplete="given-name" />
-                                                    <label className="form-label" htmlFor="available">Available</label>
+                                                    <input type="text" id="available" className="productFormFill"  />
+                                                    <label className="productFormLabel" htmlFor="available">Available</label>
                                                 </div>
 
                                             </div>
@@ -126,8 +126,8 @@ export default function AdminProducts() {
                                             <div className="col">
 
                                                 <div data-mdb-input-init className="form">
-                                                    <input type="text" id="size1" className="form-control form-control-lg" autoComplete="given-name" />
-                                                    <label className="form-label" htmlFor="size1">Small Size</label>
+                                                    <input type="text" id="size1" className="productFormFill"  />
+                                                    <label className="productFormLabel" htmlFor="size1">Small Size</label>
                                                 </div>
 
                                             </div>
@@ -135,8 +135,8 @@ export default function AdminProducts() {
                                             <div className="col">
 
                                                 <div data-mdb-input-init className="form">
-                                                    <input type="text" id="price1" className="form-control form-control-lg" autoComplete="given-name" />
-                                                    <label className="form-label" htmlFor="price1">Small Price</label>
+                                                    <input type="text" id="price1" className="productFormFill"  />
+                                                    <label className="productFormLabel" htmlFor="price1">Small Price</label>
                                                 </div>
 
                                             </div>
@@ -144,71 +144,70 @@ export default function AdminProducts() {
                                             <div className="col">
 
                                                 <div data-mdb-input-init className="form">
-                                                    <input type="text" id="size2" className="form-control form-control-lg" autoComplete="given-name" />
-                                                    <label className="form-label" htmlFor="size2">Medium Size</label>
+                                                    <input type="text" id="size2" className="productFormFill"  />
+                                                    <label className="productFormLabel" htmlFor="size2">Medium Size</label>
                                                 </div>
 
                                             </div>
                                             <div className="col">
 
                                                 <div data-mdb-input-init className="form">
-                                                    <input type="text" id="price2" className="form-control form-control-lg" autoComplete="given-name" />
-                                                    <label className="form-label" htmlFor="price2">Medium Price</label>
+                                                    <input type="text" id="price2" className="productFormFill"  />
+                                                    <label className="productFormLabel" htmlFor="price2">Medium Price</label>
                                                 </div>
 
                                             </div>
                                             <div className="col">
 
                                                 <div data-mdb-input-init className="form">
-                                                    <input type="text" id="size3" className="form-control form-control-lg" autoComplete="given-name" />
-                                                    <label className="form-label" htmlFor="size3">Large Size</label>
+                                                    <input type="text" id="size3" className="productFormFill"  />
+                                                    <label className="productFormLabel" htmlFor="size3">Large Size</label>
                                                 </div>
 
                                             </div>
                                             <div className="col">
 
                                                 <div data-mdb-input-init className="form">
-                                                    <input type="text" id="price3" className="form-control form-control-lg" autoComplete="given-name" />
-                                                    <label className="form-label" htmlFor="price3">Large Price</label>
+                                                    <input type="text" id="price3" className="productFormFill"  />
+                                                    <label className="productFormLabel" htmlFor="price3">Large Price</label>
                                                 </div>
 
                                             </div>
                                             <div className="col">
 
                                                 <div data-mdb-input-init className="form">
-                                                    <input type="text" id="quantity" className="form-control form-control-lg" autoComplete="given-name" />
-                                                    <label className="form-label" htmlFor="quantity">Quantity</label>
+                                                    <input type="text" id="quantity" className="productFormFill"  />
+                                                    <label className="productFormLabel" htmlFor="quantity">Quantity</label>
                                                 </div>
 
                                             </div>
                                             <div className="col">
 
                                                 <div data-mdb-input-init className="form">
-                                                    <input type="text" id="discount" className="form-control form-control-lg" autoComplete="given-name" />
-                                                    <label className="form-label" htmlFor="discount">Discount</label>
+                                                    <input type="text" id="discount" className="productFormFill"  />
+                                                    <label className="productFormLabel" htmlFor="discount">Discount</label>
                                                 </div>
 
                                             </div>
                                             <div className="col">
-                                               
+
                                                 <input className="file" id="imageUrl" type="file" />
-                                                <label htmlFor="formFileSm" className="slabel">Upload Image</label>
+                                                <label htmlFor="formFileSm" className="uploadImg">Upload Image</label>
                                             </div>
-                                            
-                                        </div>                                  
 
-                                        <div className="mt-4 pt-2">
+                                        </div>
+
+                                        <div className="col">
                                             <button data-mdb-ripple-init className="sub" type="submit" onClick={addAndUpdate} >Submit</button>
                                         </div>
 
                                     </div>
                                 </div>
+                            
                             </div>
-                        </div>
-                    </div>
-                </div>
-                
+
+                    </div>}
             </section>
-      </main>
+        </div>
     )
 }
