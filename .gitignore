@@ -10,8 +10,8 @@
 *.userosscache
 *.sln.docstates
 SpinnerWallArt_FEBE.Server/appsettings.json
-
-
+SpinnerWallArt_FEBE.Server/appsettings/appsettings.Development.json
+SpinnerWallArt_FEBE.Server/Models/Photos
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

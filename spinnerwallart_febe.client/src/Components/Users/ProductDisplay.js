@@ -12,23 +12,10 @@ export default function ProductDisplay() {
         console.log(userProducts)
     }, [userProducts])
     useMemo(() => {
-        fetch('https://localhost:7090/api/Products/GetAllProducts', {
-            method: 'POST',
+        fetch('https://localhost:7090/api/Admin/GetAllProducts', {
+            method: 'GET',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                "productID": 0,
-                "productName": "string",
-                "price1": 0,
-                "price2": 0,
-                "price3": 0,
-                "size1": "string",
-                "size2": "string",
-                "size3": "string",
-                "discount": 0,
-                "quantity": 0,
-                "imageUrl": "string",
-                "available": 0
-            })
+           
 
         })
             .then(response => response.json()).then((data) => {

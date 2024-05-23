@@ -4,6 +4,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
     public interface IAdmin
     {
         public Response GetAllUsers();
+        public Response GetAllProducts();
 
         public Response AddAndUpdateProd(Products products);
 

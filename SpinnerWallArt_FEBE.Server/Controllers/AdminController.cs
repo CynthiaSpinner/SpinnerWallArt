@@ -17,6 +17,16 @@ namespace SpinnerWallArt_FEBE.Server.Controllers
             return response;
         }
 
+        [HttpGet]
+        [Route("GetAllProducts")]
+        public Response GetAllProducts()
+        {
+
+            Response response = new Response();
+            response = AdminRepository.GetAllProducts();
+            return response;
+        }
+
         [HttpPost]
         [Route("AddAndUpdateProd")]
 

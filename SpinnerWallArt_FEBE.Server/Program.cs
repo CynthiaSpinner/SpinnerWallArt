@@ -3,6 +3,12 @@ using SpinnerWallArt_FEBE.Server.Models;
 using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json.Serialization;
 
+using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
+using Microsoft.Extensions.DependencyInjection;
+
+using System.IO;
+
+
 namespace SpinnerWallArt_FEBE.Server
 {
     public class Program

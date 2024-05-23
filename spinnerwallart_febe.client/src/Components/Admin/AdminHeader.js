@@ -16,7 +16,7 @@ export default function AdminHeader() {
 
                         <ul className="admin-nav-ul">
                             <li className="admin-nav-item">
-                                <Link className="admin-nav-item" to='/' >Admin Dashboard</Link>
+                                <Link className="admin-nav-item" to='/' >Admin Home</Link>
                             </li>
 
                             <li className="admin-nav-item">
@@ -28,10 +28,12 @@ export default function AdminHeader() {
                             </li>
 
                             <li className="admin-nav-item">
-                                <Link className="admin-nav-item" to='/customers' >Customer Details</Link>
+                                <Link className="admin-nav-item" to='/customers' >Customers</Link>
                             </li>
 
-
+                            <li className="admin-nav-item">
+                                <Link className="admin-nav-item" to='/Products' >Customer View</Link>
+                            </li>
                         </ul>
 
                     </div>

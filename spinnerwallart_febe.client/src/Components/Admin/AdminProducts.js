@@ -9,6 +9,19 @@ export default function AdminProducts() {
 
     const [editProducts, setEditProducts] = useState(false);
 
+    const refresh = useCallback(() => {
+        fetch('https://localhost:7090/api/Admin/GetAllProducts', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+           
+
+        })
+            .then(response => response.json()).then((data) => {
+                console.log(data.ListProducts)
+                setAdminProducts(data.ListProducts)
+            })
+    }, [])
+
     /*const [imageProduct, setImageProducts] = useState("")*/
     const addAndUpdate = useCallback(() => {
         const available = document.getElementById('available').value;
@@ -33,6 +46,7 @@ export default function AdminProducts() {
             body: formData
             
         })
+
             .then(response => response.json()).then((data) => {
                 console.log(data)
                 fetch('https://localhost:7090/api/Admin/AddAndUpdateProd', {
@@ -52,30 +66,21 @@ export default function AdminProducts() {
                         available: available
                     })
                 })
+                    .then(() => {
+                        setEditProducts(false)
+                        refresh()
+                    })
             })        
-    }  , [])
+    }, [refresh])
             
     useEffect(() => {
         console.log(adminproducts)
     },[adminproducts])
     useMemo(() => {
-        fetch('https://localhost:7090/api/Products/GetAllProducts', {
-            method: 'POST',
+        fetch('https://localhost:7090/api/Admin/GetAllProducts', {
+            method: 'GET',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                "productID": 0,
-                "productName": "string",
-                "price1": 0,
-                "price2": 0,
-                "price3": 0,
-                "size1": "string",
-                "size2": "string",
-                "size3": "string",
-                "discount": 0,
-                "quantity": 0,
-                "imageUrl": "string",
-                "available": 0
-            })
+            
 
         })
             .then(response => response.json()).then((data) => {
