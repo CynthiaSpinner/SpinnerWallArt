@@ -1,7 +1,25 @@
-import React from 'react';
-import AdminHeader from "./AdminHeader"
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import AdminHeader from "./AdminHeader";
+import OrderTable from "./OrderTable";
+
 
 export default function AdminOrders() {
+    const [adminOrders, setAdminOrders] = useState([{ productID: 0 }])
+
+    const [editOrders, setEditOrders] = useState(false);
+
+    const refresh = useCallback(() => {
+        fetch('https://localhost:7090/api/Admin/GetAllProducts', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+
+
+        })
+            .then(response => response.json()).then((data) => {
+                console.log(data.ListProducts)
+                setAdminProducts(data.ListProducts)
+            })
+    }, [])
     return (
         <section>
             <div>   {/*<Link to='/admindashboard' ></Link>*/}
