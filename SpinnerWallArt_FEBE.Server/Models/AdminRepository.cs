@@ -40,6 +40,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
                     user.Password = Convert.ToString(dataTable.Rows[i]["Password"]);
                     user.TotalAmount = Convert.ToDecimal(dataTable.Rows[i]["TotalAmount"]);
                     user.Status = Convert.ToInt32(dataTable.Rows[i]["Status"]);
+                    user.Created = Convert.ToDateTime(dataTable.Rows[i]["Created"]);
                     
                     UsersList.Add(user);
                 }
@@ -192,7 +193,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
                     Orders order = new Orders();
-                    order.OrdersId = Convert.ToInt32(dataTable.Rows[i]["OrdersId"]);
+                    order.OrderID = Convert.ToInt32(dataTable.Rows[i]["OrderID"]);
                     order.OrderNumber = Convert.ToInt32(dataTable.Rows[i]["OrderNumber"]);
                     order.ID = Convert.ToInt32(dataTable.Rows[i]["ID"]);
                     order.OrderTotal = Convert.ToDecimal(dataTable.Rows[i]["OrderTotal"]);

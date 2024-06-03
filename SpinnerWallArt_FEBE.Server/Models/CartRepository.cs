@@ -3,7 +3,7 @@ using System.Data;
 
 namespace SpinnerWallArt_FEBE.Server.Models
 {
-    public class CartRepository
+    public class CartRepository : ICart
     {
         private readonly MySqlConnection _conn;
         public CartRepository(MySqlConnection conn)
@@ -43,12 +43,12 @@ namespace SpinnerWallArt_FEBE.Server.Models
             return response;
         }
 
-        public Response PlaceOrder(Users users)
+        public Response PlaceOrder(Orders order)
         {            
             Response response = new Response();
             MySqlCommand cmd = new MySqlCommand("Spi_placeOrder", _conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@ID", users.ID);
+            cmd.Parameters.AddWithValue("@ID", order.ID);
 
             _conn.Open();
             int i = cmd.ExecuteNonQuery();

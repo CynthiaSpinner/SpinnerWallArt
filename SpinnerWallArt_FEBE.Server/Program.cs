@@ -21,7 +21,10 @@ namespace SpinnerWallArt_FEBE.Server
             
                 new MySqlConnection(builder.Configuration.GetConnectionString("spinner")));             
 
-            builder.Services.AddSingleton<IAdmin, AdminRepository>();
+            builder.Services.AddSingleton<IAdmin, AdminRepository>(); 
+            builder.Services.AddSingleton<IProducts, ProductsRepository>(); 
+            builder.Services.AddSingleton<IOrders, OrdersRepository>();
+            builder.Services.AddSingleton<ICart, CartRepository>();
             // Add services to the container.
             builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
