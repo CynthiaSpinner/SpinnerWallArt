@@ -40,7 +40,7 @@ namespace SpinnerWallArt_FEBE.Server.Models
                     user.Password = Convert.ToString(dataTable.Rows[i]["Password"]);
                     user.TotalAmount = Convert.ToDecimal(dataTable.Rows[i]["TotalAmount"]);
                     user.Status = Convert.ToInt32(dataTable.Rows[i]["Status"]);
-                    user.Created = Convert.ToDateTime(dataTable.Rows[i]["Created"]);
+                    //user.Created = Convert.ToDateTime(dataTable.Rows[i]["Created"]);
                     
                     UsersList.Add(user);
                 }
