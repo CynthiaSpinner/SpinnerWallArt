@@ -11,12 +11,6 @@ namespace SpinnerWallArt_FEBE.Server.Controllers
     {
         
 
-        //TODO:
-
-        // add in later:
-        // add ICart CartRepository and IOrders OrderRepository
-        // to arguments in controller
-
         [HttpPost]
         [Route("AddToCart")]
 
